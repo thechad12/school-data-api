@@ -1,4 +1,5 @@
 import os
+from app import app
 if not app.debug:
 	import logging
 	from logging.handlers import RotatingFileHandler
