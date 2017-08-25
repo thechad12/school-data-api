@@ -14,3 +14,13 @@ def schoolsSerialize():
 	schools = School.query().all()
 	return jsonify(schools=[s.serialize for s in schools])
 
+@app.routde('/schools/<int:school_id>')
+def returnSchool(school_id):
+	school_id = school_id
+	school = School.query(id=school_id).one()
+	return jsonify(school=school.serialize)
+
+@app.errorhandler(404)
+def notFound(error):
+	return render_template('404.html')
+
