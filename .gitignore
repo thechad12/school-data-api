@@ -1,4 +1,6 @@
 *.pyc
 db_repository/
 *.db
+*.log
+tmp/
 

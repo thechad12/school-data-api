@@ -22,5 +22,14 @@ def returnSchool(school_id):
 
 @app.errorhandler(404)
 def notFound(error):
-	return render_template('404.html')
+	return render_template('404.html'), 404
+
+@app.errorhandler(500)
+def internalError(error):
+	db.session.rollback()
+	return render_template('500.html'), 500
+
+@app.errorhandler(410)
+def gone(error):
+	return render_template('410.html'), 410
 
