@@ -12,5 +12,5 @@ if not app.debug:
 	app.logger.info('api log')
 basedir = os.path.abspath(os.path.dirname(__file__))
 
-SQLALCHEMY_DATABASE_URI = 'postgresql://kevin:George06820@localhost/edu.db'
+SQLALCHEMY_DATABASE_URI = 'sqlite:///' + os.path.join(basedir, 'edu.db')
 SQLALCHEMY_MIGRATE_REPO = os.path.join(basedir, 'db_repository')

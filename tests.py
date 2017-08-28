@@ -7,7 +7,7 @@ from app.models import School
 class TestCase(unittest.TestCase):
 	def set(self):
 		app.config['TEST'] = True
-		app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://kevin:George06820@localhost/edu.db'
+		app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///' + os.path.join(basedir, 'edu.db')
 		db.create_all()
 
 	def remove(self):

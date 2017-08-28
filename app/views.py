@@ -10,22 +10,22 @@ def index():
 	return render_template('index.html')
 
 @app.route('/schools/')
-def schoolsSerialize():
+def schools_serialize():
 	schools = School.query().all()
 	return jsonify(schools=[s.serialize for s in schools])
 
 @app.route('/schools/<int:school_id>')
-def returnSchool(school_id):
+def return_school(school_id):
 	school_id = school_id
 	school = School.query(id=school_id).one()
 	return jsonify(school=school.serialize)
 
 @app.errorhandler(404)
-def notFound(error):
+def not_found(error):
 	return render_template('404.html'), 404
 
 @app.errorhandler(500)
-def internalError(error):
+def internal_error(error):
 	db.session.rollback()
 	return render_template('500.html'), 500
 

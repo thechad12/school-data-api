@@ -1,6 +1,7 @@
 import imp
 from migrate.versioning import api
 from app import db
+from app import models
 from config import SQLALCHEMY_DATABASE_URI
 from config import SQLALCHEMY_MIGRATE_REPO
 
