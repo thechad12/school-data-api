@@ -3,22 +3,22 @@ from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import relationship
 from sqlalchemy import create_engine
 import sys
+from app import db
 
-Base = declarative_base()
 
-class School(Base):
+class School(db.Model):
 	__tablename__ = 'school'
 
-	id = Column(Integer, primary_key=True)
-	name = Column(String, index=True)
-	location = Column(String, index=True)
-	gpa = Column(Integer, index=True)
-	act = Column(Integer, index=True)
-	sat = Column(Integer, index=True)
-	grad_rate = Column(Integer, index=True)
-	avg_salary = Column(Integer, index=True)
-	grad_time = Column(Integer, index=True)
-	school_size = Column(Integer, index=True)
+	id = db.Column(db.Integer, primary_key=True)
+	name = db.Column(db.String, index=True)
+	location = db.Column(db.String, index=True)
+	gpa = db.Column(db.Integer, index=True)
+	act = db.Column(db.Integer, index=True)
+	sat = db.Column(db.Integer, index=True)
+	grad_rate = db.Column(db.Integer, index=True)
+	avg_salary = db.Column(db.Integer, index=True)
+	grad_time = db.Column(db.Integer, index=True)
+	school_size = db.Column(db.Integer, index=True)
 
 	@property
 	def serialize(self):

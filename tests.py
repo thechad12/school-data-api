@@ -2,6 +2,7 @@ import os
 import unittest
 from config import basedir
 from app import app, db
+import config
 from app.models import School
 
 class TestCase(unittest.TestCase):
