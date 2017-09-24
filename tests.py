@@ -16,6 +16,7 @@ class TestCase(unittest.TestCase):
 		db.drop_all()
 
 	def testSchool(self):
+		db.create_all()
 		school = School(name="Duquesne University",
 			location="Pittsburgh, Pennsylvania", gpa=3.24, act=24,
 			sat=1350, grad_rate=78, avg_salary=50000, grad_time=4,
