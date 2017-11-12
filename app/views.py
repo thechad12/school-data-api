@@ -11,13 +11,13 @@ def index():
 
 @app.route('/schools/')
 def schools_serialize():
-	schools = School.query().all()
+	schools = db.session.query(School).all()
 	return jsonify(schools=[s.serialize for s in schools])
 
 @app.route('/schools/<int:school_id>')
 def return_school(school_id):
 	school_id = school_id
-	school = School.query(id=school_id).one()
+	school = db.session.query(School).filter_by(id=school_id).one()
 	return jsonify(school=school.serialize)
 
 @app.errorhandler(404)
