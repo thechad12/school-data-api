@@ -2,7 +2,7 @@ from sqlalchemy import Column, ForeignKey, Integer, String
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import relationship
 from sqlalchemy import create_engine
-from itsdangerous import (TimedJSONWebSignatureSerializer as Serializer, )
+from itsdangerous import (TimedJSONWebSignatureSerializer as Serializer, BadSignature)
 import sys
 from app import db
 
