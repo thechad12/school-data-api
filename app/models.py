@@ -2,6 +2,7 @@ from sqlalchemy import Column, ForeignKey, Integer, String
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import relationship
 from sqlalchemy import create_engine
+from passlib.apps import custom_app_context as passwd_context
 from itsdangerous import (TimedJSONWebSignatureSerializer as Serializer, BadSignature)
 import sys
 from app import db
@@ -41,7 +42,14 @@ class User(db.Model):
 
 	id = db.Column(db.Integer, primary_key=True)
 	username = db.Column(db.String)
+	password = db.Column(db.String)
 	auth_token = db.Column(db.String)
+
+	def hash_passwd(self, passwd):
+		self.passwd_hash = passwd_context.encrypt(passwd)
+
+	def verify_passwd(self, passwd):
+		return passwd_context.verify(passwd, self.passwd_hash)
 
 	def gen_auth_token(self):
 		s = Serializer(app.config['SECRET_KEY'])

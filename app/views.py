@@ -8,6 +8,10 @@ from flask import render_template, jsonify, redirect, session, url_for,\
 def index():
 	return render_template('index.html')
 
+@app.route('/newaccount', methods=['POST'])
+def new_account():
+	
+
 # Return all schools in db
 @app.route('/schools/')
 def schools_serialize():
