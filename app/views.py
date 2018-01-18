@@ -1,7 +1,8 @@
 from app import app, db
 from models import School, User
 from flask import render_template, jsonify, redirect, session, url_for,\
-	request
+	request, make_response
+import json
 
 @app.route('/')
 @app.route('/index')
@@ -10,7 +11,17 @@ def index():
 
 @app.route('/newaccount', methods=['POST'])
 def new_account():
-	
+	username = request.json.get('username')
+	password = request.json.get('password')
+	if username is None or password is None:
+		response = make_response(json.dumps('Missing username or password'), 400)
+		return response
+	if db.session.query(User).filter_by(username=username) is not None:
+		response = make_response(json.dumps('User already exists'), 400)
+		return response
+	user = User(username=username)
+	db.session.add(user)
+	db.session.commit()
 
 # Return all schools in db
 @app.route('/schools/')
